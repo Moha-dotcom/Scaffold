@@ -70,9 +70,6 @@ select * from users;
 SELECT  *  FROM posts
 WHERE user_id = '484c00cd-fb31-40fe-a22e-00402ed29f6e';
 
-INSERT INTO POSTS (user_id, title, body) VALUES ('484c00cd-fb31-40fe-a22e-00402ed29f6e', 'Russia is going to war with Ukraine on the 3rd of the Month ', 'Ukraine is a stratical place to wac war on.')
-
-INSERT INTO POSTS (user_id, title, body) VALUES ('6ad397c0-5daf-4843-b90f-58c463acfd88', 'Mikue', 'Lorem daskdkas foaskfks')
 
 DELETE FROM POSTS
 WHERE ID = 'e489eacd-dd37-4a55-9c1b-2c0ae93ba50d';
