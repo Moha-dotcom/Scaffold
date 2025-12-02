@@ -15,10 +15,8 @@ router.use(ensureAuthentication);
 
 router.get("/", getAllPost);
 router.get("/:postId", getPostById);
-
 // CREATE post
 router.post("/create", createPost);
-
 router.use('/:postId/comments',  commentRouter);
 // router.use("/:postId/likes", likeRouter);
 export default router;

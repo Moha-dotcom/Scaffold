@@ -30,7 +30,7 @@ app.use(passport.session())
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 dotenv.config();
-
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -38,7 +38,9 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get("/", (req, res) => res.json({ ok: true }));
+app.get("/", (req, res) => {
+       res.sendFile(path.join(__dirname, 'public/login.html'));
+});
 
 
 //

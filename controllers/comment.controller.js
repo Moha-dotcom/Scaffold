@@ -2,7 +2,6 @@ import sql from "../db/index.js";
 
 
  export const getAllForPost = async (req, res) => {
-    // Post Id
     try{
         const {postId} = req.params;
         const rows = await sql `SELECT c.*,  u.username
@@ -30,4 +29,28 @@ VALUES (${postId},${user.id},${body}) RETURNING *`;
 } catch (err) {
     res.status(500).json({ error: err });
 }
+}
+
+// Get post
+export const getById = async (req, res) => {
+     try {
+         const {commentId} = req.params;
+         const rows = await sql `SELECT  * FROM comments WHERE id  = ${commentId};`;
+         res.status(201).json(rows);
+
+     }catch(err){
+         res.status(500).json({ error: err.message });
+     }
+}
+// Delete Post
+export const deleteById = async (req, res) => {
+        try{
+            const {commentId} = req.params;
+            if(!req.user.id) return res.status(401).json({ message: 'Unauthorized' });
+            const rows = await sql `DELETE FROM comments WHERE id = ${commentId};`;
+            res.status(201).json(rows);
+        }catch(err){
+            res.status(500).json({ msg : err.message  });
+        }
+
 }
