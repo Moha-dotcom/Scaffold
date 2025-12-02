@@ -1,5 +1,9 @@
 import express from 'express';
 import passport from 'passport';
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const router = express.Router();
 
@@ -34,18 +38,14 @@ router.get("/failure", (req, res) => {
 
 // // Dashboard
 router.get('/dashboard', ensureAuthentication, (req, res) => {
-    res.send(`
-        <h1>Welcome, ${req.user.username}!</h1>
-        <p>Your Discord ID: ${req.user.discord_id}</p>
-        <a href="/api/v1/auth/logout">Logout</a>
-    `);
+    res.sendFile(path.join(__dirname, '../../public/dashboard.html'));
 });
 
 
 // Logout
 router.get('/logout', (req, res) => {
     req.logout(() => {
-        res.redirect('/api/v1/auth/discord');
+        res.redirect('/');
     });
 });
 
